@@ -17,8 +17,8 @@ WORKDIR /app
 RUN npm install
 # Ajout des sources
 ADD . /app/
-# On expose le port 3000
-EXPOSE 3000
+# On expose le port 8080
+EXPOSE 8080
 # On partage un dossier de log
 VOLUME . /app/log
 # On lance le serveur quand on démarre le conteneur
