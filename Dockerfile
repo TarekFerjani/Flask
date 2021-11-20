@@ -1,20 +1,23 @@
-# "ported" by Adam Miller <maxamillion@fedoraproject.org> from
-#   https://github.com/fedora-cloud/Fedora-Dockerfiles
-#
-# Originally written for Fedora-Dockerfiles by
-#   "Aditya Patawari" <adimania@fedoraproject.org>
+# rust tooling is provided by `archlinux-rust`
+FROM geal/archlinux-rust
+MAINTAINER Geoffroy Couprie, contact@geoffroycouprie.com
+# needed by rust
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
-FROM centos:centos7
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
-RUN yum -y update; yum clean all
-RUN yum -y install epel-release; yum clean all
-RUN yum -y install python-pip; yum clean all
+# relevant files are in ./source
+ADD . /source
+WORKDIR /source
 
-ADD . /src
 
-RUN cd /src; pip install -r requirements.txt
-
+# Clever Cloud expects your app to listen on port 8080
 EXPOSE 8080
+RUN rustc -V
 
-CMD ["python", "/src/index.py"]
+
+# Build your application
+RUN cargo build
+
+
+# Run the application with CMD
+CMD cargo run
