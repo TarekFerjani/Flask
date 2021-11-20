@@ -1,23 +1,9 @@
-# rust tooling is provided by `archlinux-rust`
-FROM geal/archlinux-rust
-MAINTAINER Geoffroy Couprie, contact@geoffroycouprie.com
-# needed by rust
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-
-
-# relevant files are in ./source
-ADD . /source
-WORKDIR /source
-
-
-# Clever Cloud expects your app to listen on port 8080
+FROM ruby:2.4.4
 EXPOSE 8080
-RUN rustc -V
+COPY Gemfile Gemfile.lock td-agent.conf go.sh ./
 
+RUN bundle config --global frozen 1
+RUN bundle install
+RUN chmod +x go.sh
 
-# Build your application
-RUN cargo build
-
-
-# Run the application with CMD
-CMD cargo run
+CMD [ "/go.sh" ]
