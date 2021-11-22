@@ -1,6 +1,4 @@
-FROM centos:7
-RUN yum update -y && yum install httpd httpd-tools -y
-
-EXPOSE 80
-
-CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
+FROM nginx:1.11-alpine
+COPY index.html /usr/share/nginx/html
+EXPOSE 8080
+CMD ["/bin/sh", "-c", "sed -i 's/listen  .*/listen 8080;/g' /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
