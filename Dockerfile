@@ -1,2 +1,8 @@
-FROM odoo:latest
-ExPOSE 8069
+FROM python
+
+WORKDIR /opt/demo/
+COPY /app .
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT python app.py
