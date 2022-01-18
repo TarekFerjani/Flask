@@ -15,10 +15,10 @@ Bootstrap(app)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or os.urandom(32)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.config['ALLOWED_EXTENSIONS'] = {'pdf',}
-app.config['TWILIO_ACCOUNT_SID'] = os.getenv('TWILIO_ACCOUNT_SID')
-app.config['TWILIO_ACCOUNT_TOKEN'] = os.getenv('TWILIO_ACCOUNT_TOKEN')
-app.config['FAX_FROM_NUMBER'] = os.getenv('FAX_FROM_NUMBER')
-app.config['SMS_TO_NUMBER'] = os.getenv('SMS_TO_NUMBER')
+app.config['TWILIO_ACCOUNT_SID'] = os.getenv('ACef2409a3de9f24bb0140eb03ff8a632d')
+app.config['TWILIO_ACCOUNT_TOKEN'] = os.getenv('15292863cbbb7fa951ca2e35ea8000f7')
+app.config['FAX_FROM_NUMBER'] = os.getenv('+17373770896')
+app.config['SMS_TO_NUMBER'] = os.getenv('+17373770896')
 
 app.client = Client(
     app.config['TWILIO_ACCOUNT_SID'],
