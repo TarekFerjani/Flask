@@ -1,1 +1,2 @@
 flask
+flask twilio wtforms flask-bootstrap flask-wtf
