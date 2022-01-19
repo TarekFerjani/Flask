@@ -9,7 +9,8 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import DataRequired
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 app = Flask(__name__)
 Bootstrap(app)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or os.urandom(32)
