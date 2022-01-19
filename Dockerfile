@@ -7,6 +7,8 @@ WORKDIR /python-docker
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install flask twilio wtforms flask-bootstrap flask-wtf
+RUN pip install -U Werkzeug==0.16.0
+
 COPY . .
 EXPOSE 8080
 ENTRYPOINT [ "python" ]
